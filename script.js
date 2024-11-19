@@ -94,7 +94,7 @@ function userMove(index) {
     } else {
         currentPlayer = "ai";
         gameInfo.textContent = "AI's turn";
-        setTimeout(aiMove, 500);
+        setTimeout(aiMove, 1000);
     }
 }
 
