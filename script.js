@@ -70,7 +70,7 @@ function startGame() {
 
     boxes.forEach((box) => {
         box.textContent = "";
-        box.classList.remove("win");
+        box.style.backgroundColor = "";
     });
 
     gameInfo.textContent = "Your turn";
