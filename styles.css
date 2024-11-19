@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Rubik", sans-serif;
+}
+
+.wrapper {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(./background.jpg);
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    place-items: center;
+}
+
+
+.tic-tac-toe {
+    width: 25rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    aspect-ratio: 1/1;
+}
+
+.box {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    aspect-ratio: 1/1;
+    font-size: 4.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+
+.box1,
+.box2,
+.box4,
+.box5 {
+    border-right: 4px solid white;
+    border-bottom: 4px solid white;
+}
+
+.box3,
+.box6 {
+    border-bottom: 4px solid white;
+}
+
+.box7,
+.box8 {
+    border-right: 4px solid white;
+}
+
+.game-info {
+    color: white;
+    position: absolute;
+    top: 4.5rem;
+    left: 15rem;
+    font-size: 35px;
+    letter-spacing: 3px;
+    font-weight: bolder;
+    text-shadow: 4px 4px 18px rgb(228, 223, 223, 1);
+}
+
+.cta {
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    letter-spacing: 2px;
+    font-weight: bolder;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    border: 4px solid rgba(255, 255, 255, 0.25);
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+}
+
+
+.play {
+    position: absolute;
+    bottom: 70px;
+    right: 300px;
+}
+
+.easy {
+    position: absolute;
+    bottom: 250px;
+    left: 500px;
+}
+
+.hard {
+    position: absolute;
+    bottom: 250px;
+    right: 600px;
+}
+
+.X {
+    position: absolute;
+    bottom: 380px;
+    left: 500px;
+}
+
+.O {
+    position: absolute;
+    bottom: 380px;
+    right: 600px;
+}
+
+.head{
+    color: white;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.char{
+    position: absolute;
+    top: 200px;
+    left: 520px;
+}
+
+.diff{
+    position: absolute;
+    left: 570px;
+}
+
+.active {
+    display: block;
+}
+
+.game {
+    display: none;
+}
+
+
+.buttons {
+    display: flex;
+    gap: 30px;
+    position: absolute;
+    bottom: 70px;
+    right: 150px;
+}
+
+.btn {
+    all: unset;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    letter-spacing: 2px;
+    font-weight: bolder;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    border: 4px solid rgba(255, 255, 255, 0.25);
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+}
+
+.crackers {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 220px;
+    left: 250px;
+    min-width: 1050px;
+}
+
+.show {
+    display: block;
+}
