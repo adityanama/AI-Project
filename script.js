@@ -56,6 +56,7 @@ newGameButton.addEventListener("click", resetGame);
 settingButton.addEventListener("click", () => {
     settings.style.display = "block";
     game.style.display = "none";
+    crackers.style.display = "none";
 });
 
 boxes.forEach((box, index) => {
@@ -66,6 +67,8 @@ boxes.forEach((box, index) => {
 function startGame() {
     settings.style.display = "none";
     game.style.display = "block";
+    crackers.style.display = "none";
+    
     board.fill(null);
 
     boxes.forEach((box) => {
