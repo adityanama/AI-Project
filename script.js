@@ -51,8 +51,8 @@ hard.addEventListener("click", () => {
 });
 
 playButton.addEventListener("click", startGame);
-
 newGameButton.addEventListener("click", resetGame);
+
 settingButton.addEventListener("click", () => {
     settings.style.display = "block";
     game.style.display = "none";
@@ -64,11 +64,12 @@ boxes.forEach((box, index) => {
 });
 
 // Start Game
-function startGame() {
+function startGame() 
+{
     settings.style.display = "none";
     game.style.display = "block";
     crackers.style.display = "none";
-    
+
     board.fill(null);
 
     boxes.forEach((box) => {
@@ -81,7 +82,8 @@ function startGame() {
 }
 
 // User Move
-function userMove(index) {
+function userMove(index) 
+{
     if (board[index] || currentPlayer !== "user")
         return;
 
@@ -90,57 +92,62 @@ function userMove(index) {
     boxes[index].style.color = "yellow";
 
     const res = checkWin(userChar)
-    if (res) {
+    if (res)
         endGame("You Win", res);
-    } else if (board.every((cell) => cell)) {
+    else if (board.every((cell) => cell))
         endGame("Game Drawn");
-    } else {
+    else
         currentPlayer = "ai";
-        gameInfo.textContent = "AI's turn";
-        setTimeout(aiMove, 1000);
-    }
+    gameInfo.textContent = "AI's turn";
+    setTimeout(aiMove, 1000);
 }
 
 // AI Move
-function aiMove() {
+function aiMove() 
+{
     let move;
-    if (difficulty === "easy") {
+    if (difficulty === "easy")
         move = getRandomMove();
-    } else {
-        move = getBestMove();
-    }
+    else
+        move = getBestMove(); z
 
     board[move] = aiChar;
     boxes[move].textContent = aiChar;
     boxes[move].style.color = "orange";
 
     const res = checkWin(aiChar);
-    if (res) {
+    if (res)
         endGame("You Lose", res);
-    } else if (board.every((cell) => cell)) {
+    else if (board.every((cell) => cell))
         endGame("Game Drawn");
-    } else {
+    else
         currentPlayer = "user";
-        gameInfo.textContent = "Your turn";
-    }
+    gameInfo.textContent = "Your turn";
 }
 
 // Random Move (Easy Difficulty)
-function getRandomMove() {
+function getRandomMove() 
+{
     const availableMoves = board.map((cell, index) => (cell ? null : index)).filter((cell) => cell !== null);
     return availableMoves[Math.floor(Math.random() * availableMoves.length)];
 }
 
 // Minimax Algorithm (Hard Difficulty)
-function getBestMove() {
+function getBestMove() 
+{
     let bestScore = -Infinity;
     let move;
-    for (let i = 0; i < board.length; i++) {
-        if (!board[i]) {
+    for (let i = 0; i < board.length; i++) 
+    {
+        if (!board[i]) 
+        {
             board[i] = aiChar;
-            let score = minimax(board, 0, false);
+
+            let score = minimax(board, 0, false, -Infinity, Infinity);
+
             board[i] = null;
-            if (score > bestScore) {
+            if (score > bestScore) 
+            {
                 bestScore = score;
                 move = i;
             }
@@ -149,15 +156,18 @@ function getBestMove() {
     return move;
 }
 
-function minimax(board, depth, isMaximizing) {
+function minimax(board, depth, isMaximizing) 
+{
     if (checkWin(aiChar)) return 10 - depth;
     if (checkWin(userChar)) return depth - 10;
     if (board.every((cell) => cell)) return 0;
 
     if (isMaximizing) {
         let bestScore = -Infinity;
-        for (let i = 0; i < board.length; i++) {
-            if (!board[i]) {
+        for (let i = 0; i < board.length; i++) 
+        {
+            if (!board[i]) 
+            {
                 board[i] = aiChar;
                 let score = minimax(board, depth + 1, false);
                 board[i] = null;
@@ -165,10 +175,15 @@ function minimax(board, depth, isMaximizing) {
             }
         }
         return bestScore;
-    } else {
+
+    }
+    else 
+    {
         let bestScore = Infinity;
-        for (let i = 0; i < board.length; i++) {
-            if (!board[i]) {
+        for (let i = 0; i < board.length; i++) 
+        {
+            if (!board[i]) 
+            {
                 board[i] = userChar;
                 let score = minimax(board, depth + 1, true);
                 board[i] = null;
@@ -180,7 +195,8 @@ function minimax(board, depth, isMaximizing) {
 }
 
 // Check Win
-function checkWin(player) {
+function checkWin(player) 
+{
     const winPatterns = [
         [0, 1, 2],
         [3, 4, 5],
@@ -191,24 +207,25 @@ function checkWin(player) {
         [0, 4, 8],
         [2, 4, 6],
     ];
-    for (const pattern of winPatterns) {
-        if (pattern.every((index) => board[index] === player)) {
+    for (const pattern of winPatterns) 
+    {
+        if (pattern.every((index) => board[index] === player))
             return pattern;
-        }
     }
     return false;
 }
 
 
 // End Game
-function endGame(message, res) {
-
-    if (message == "You Win") {
+function endGame(message, res) 
+{
+    if (message == "You Win") 
+    {
         res.forEach((index) => (boxes[index].style.backgroundColor = 'rgba(4, 110, 4, 0.7)'));
         crackers.style.display = "flex";
     }
-
-    else if (message == "You Lose") {
+    else if (message == "You Lose") 
+    {
         res.forEach((index) => (boxes[index].style.backgroundColor = 'rgb(151, 21, 21)'));
     }
 
@@ -217,7 +234,8 @@ function endGame(message, res) {
 }
 
 // Reset Game
-function resetGame() {
+function resetGame() 
+{
     board.fill(null);
     crackers.style.display = "none";
 
