@@ -97,9 +97,11 @@ function userMove(index)
     else if (board.every((cell) => cell))
         endGame("Game Drawn");
     else
+    {
         currentPlayer = "ai";
         gameInfo.textContent = "AI's turn";
         setTimeout(aiMove, 1000);
+    }
 }
 
 // AI Move
@@ -121,8 +123,11 @@ function aiMove()
     else if (board.every((cell) => cell))
         endGame("Game Drawn");
     else
+    {
         currentPlayer = "user";
         gameInfo.textContent = "Your turn";
+    }
+        
 }
 
 // Random Move (Easy Difficulty)
