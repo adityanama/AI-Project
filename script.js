@@ -69,7 +69,7 @@ function startGame()
     settings.style.display = "none";
     game.style.display = "block";
     crackers.style.display = "none";
-
+    
     board.fill(null);
 
     boxes.forEach((box) => {
@@ -98,8 +98,8 @@ function userMove(index)
         endGame("Game Drawn");
     else
         currentPlayer = "ai";
-    gameInfo.textContent = "AI's turn";
-    setTimeout(aiMove, 1000);
+        gameInfo.textContent = "AI's turn";
+        setTimeout(aiMove, 1000);
 }
 
 // AI Move
@@ -109,7 +109,7 @@ function aiMove()
     if (difficulty === "easy")
         move = getRandomMove();
     else
-        move = getBestMove(); z
+        move = getBestMove();
 
     board[move] = aiChar;
     boxes[move].textContent = aiChar;
@@ -122,7 +122,7 @@ function aiMove()
         endGame("Game Drawn");
     else
         currentPlayer = "user";
-    gameInfo.textContent = "Your turn";
+        gameInfo.textContent = "Your turn";
 }
 
 // Random Move (Easy Difficulty)
@@ -142,12 +142,10 @@ function getBestMove()
         if (!board[i]) 
         {
             board[i] = aiChar;
-
-            let score = minimax(board, 0, false, -Infinity, Infinity);
-
+            let score = minimax(board, 0, false);
             board[i] = null;
-            if (score > bestScore) 
-            {
+
+            if (score > bestScore) {
                 bestScore = score;
                 move = i;
             }
@@ -162,12 +160,11 @@ function minimax(board, depth, isMaximizing)
     if (checkWin(userChar)) return depth - 10;
     if (board.every((cell) => cell)) return 0;
 
-    if (isMaximizing) {
+    if (isMaximizing) 
+    {
         let bestScore = -Infinity;
-        for (let i = 0; i < board.length; i++) 
-        {
-            if (!board[i]) 
-            {
+        for (let i = 0; i < board.length; i++) {
+            if (!board[i]) {
                 board[i] = aiChar;
                 let score = minimax(board, depth + 1, false);
                 board[i] = null;
@@ -175,8 +172,7 @@ function minimax(board, depth, isMaximizing)
             }
         }
         return bestScore;
-
-    }
+    } 
     else 
     {
         let bestScore = Infinity;
@@ -209,8 +205,9 @@ function checkWin(player)
     ];
     for (const pattern of winPatterns) 
     {
-        if (pattern.every((index) => board[index] === player))
+        if (pattern.every((index) => board[index] === player)) {
             return pattern;
+        }
     }
     return false;
 }
@@ -219,11 +216,13 @@ function checkWin(player)
 // End Game
 function endGame(message, res) 
 {
+
     if (message == "You Win") 
     {
         res.forEach((index) => (boxes[index].style.backgroundColor = 'rgba(4, 110, 4, 0.7)'));
         crackers.style.display = "flex";
     }
+
     else if (message == "You Lose") 
     {
         res.forEach((index) => (boxes[index].style.backgroundColor = 'rgb(151, 21, 21)'));
